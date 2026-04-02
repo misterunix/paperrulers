@@ -25,6 +25,9 @@ func main() {
 	flag.BoolVar(&Opt.Dark, "dark", false, "dark lines")
 	flag.Parse()
 
+	Opt.PaperSize = strings.ToLower(Opt.PaperSize)
+	Opt.PaperOrientation = strings.ToLower(Opt.PaperOrientation)
+
 	Opt.LRmargin = 12.7
 
 	if Opt.Centermark {
@@ -32,21 +35,19 @@ func main() {
 	}
 
 	Opt.LineWidth = 0.2 // line width in mm
-	if Opt.PaperSize != "" {
-		Opt.PaperSize = strings.ToUpper(Opt.PaperSize)
-	} else {
+	if Opt.PaperSize == "" {
 		fmt.Println("Invalid paper size")
 		os.Exit(1)
 	}
 
 	switch Opt.PaperSize {
-	case "LETTER":
+	case "letter":
 		switch Opt.PaperOrientation {
-		case "L":
+		case "l":
 			Opt.PageWidth = 279.4
 			Opt.PageHeight = 215.9
 			Opt.Margins = Opt.LRmargin / 2
-		case "P":
+		case "p":
 			Opt.PageWidth = 215.9
 			Opt.PageHeight = 279.4
 			Opt.Margins = Opt.LRmargin
@@ -54,13 +55,13 @@ func main() {
 			fmt.Println("Invalid paper orientation")
 			os.Exit(1)
 		}
-	case "A4":
+	case "a4":
 		switch Opt.PaperOrientation {
-		case "L":
+		case "l":
 			Opt.PageWidth = 297
 			Opt.PageHeight = 210
 			Opt.Margins = Opt.LRmargin
-		case "P":
+		case "p":
 			Opt.PageWidth = 210
 			Opt.PageHeight = 297
 			Opt.Margins = Opt.LRmargin
@@ -68,13 +69,13 @@ func main() {
 			fmt.Println("Invalid paper orientation")
 			os.Exit(1)
 		}
-	case "B5":
+	case "b5":
 		switch Opt.PaperOrientation {
-		case "L":
+		case "l":
 			Opt.PageWidth = 250
 			Opt.PageHeight = 176
 			Opt.Margins = Opt.LRmargin
-		case "P":
+		case "p":
 			Opt.PageWidth = 176
 			Opt.PageHeight = 250
 			Opt.Margins = Opt.LRmargin

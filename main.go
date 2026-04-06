@@ -23,7 +23,10 @@ func main() {
 	flag.Float64Var(&Opt.Angle, "a", 0.0, "angle in degrees offset of center mark")
 	flag.BoolVar(&Opt.Ladder, "l", false, "for blackletter 2/4/2/4")
 	flag.BoolVar(&Opt.Dark, "dark", false, "dark lines")
+	flag.StringVar(&Opt.PDFDir, "pdf", "~/tmp/paperrulers", "directory to save PDF files")
 	flag.Parse()
+
+	ensureDir("~/tmp/paperrulers")
 
 	Opt.PaperSize = strings.ToLower(Opt.PaperSize)
 	Opt.PaperOrientation = strings.ToLower(Opt.PaperOrientation)
@@ -96,7 +99,7 @@ func main() {
 		Opt.LightGray = color.RGBA{R: 0xaa, G: 0xaa, B: 0xaa, A: 0xff}
 	}
 
-	os.Mkdir("pdf", 0755)
+	// os.Mkdir("pdf", 0755)
 	// if Opt.dot {
 	// 	if Opt.Centermark {
 	// 		Opt.Filename = fmt.Sprintf("pdf/dots-%s-%s-%d-center.pdf", Opt.PaperSize, Opt.PaperOrientation, int(Opt.Spacing))
@@ -130,4 +133,15 @@ func main() {
 		os.Exit(1)
 	}
 
+}
+
+// check if directory exists and create it if not
+func ensureDir(dirName string) {
+	if _, err := os.Stat(dirName); os.IsNotExist(err) {
+		err := os.Mkdir(dirName, 0755)
+		if err != nil {
+			fmt.Printf("Failed to create directory %s: %v\n", dirName, err)
+			os.Exit(1)
+		}
+	}
 }

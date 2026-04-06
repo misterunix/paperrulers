@@ -40,7 +40,7 @@ type options struct {
 	PageMarginBottom float64                   // page margin bottom in mm
 	PaperSize        string                    // paper size
 	LineWidth        float64                   // line width in mm
-
+	PDFDir           string                    // directory to save PDF files
 }
 
 var Opt options

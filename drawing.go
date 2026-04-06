@@ -20,10 +20,11 @@ func CreateGC() {
 }
 
 func DrawLines() {
+
 	if Opt.Centermark {
-		Opt.Filename = fmt.Sprintf("pdf/lines-%s-%s-%02.3f-center.pdf", Opt.PaperSize, Opt.PaperOrientation, Opt.Spacing)
+		Opt.Filename = fmt.Sprintf("%s/lines-%s-%s-%02.3f-center.pdf", Opt.PDFDir, Opt.PaperSize, Opt.PaperOrientation, Opt.Spacing)
 	} else {
-		Opt.Filename = fmt.Sprintf("pdf/lines-%s-%s-%02.3f.pdf", Opt.PaperSize, Opt.PaperOrientation, Opt.Spacing)
+		Opt.Filename = fmt.Sprintf("%s/lines-%s-%s-%02.3f.pdf", Opt.PDFDir, Opt.PaperSize, Opt.PaperOrientation, Opt.Spacing)
 	}
 
 	CreatePDFBase()

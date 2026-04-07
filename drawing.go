@@ -44,6 +44,7 @@ func DrawLines() {
 
 }
 
+// drawDot draws a filled and stroked dot at the given point with the specified radius, line width, and color.
 func drawDot(a Point, radius float64, width float64, linecolor color.RGBA) {
 	CreateGC()
 	Opt.GC.SetStrokeColor(color.RGBA{R: linecolor.R, G: linecolor.G, B: linecolor.B, A: linecolor.A})

@@ -8,11 +8,13 @@ import (
 	"github.com/llgcode/draw2d/draw2dpdf"
 )
 
+// Point represents a 2D coordinate with X and Y values.
 type Point struct {
-	X float64
-	Y float64
+	X float64 // X is the horizontal coordinate.
+	Y float64 // Y is the vertical coordinate.
 }
 
+// options holds all configuration and state for PDF generation.
 type options struct {
 	Dest             *gofpdf.Fpdf              // PDF destination
 	GC               *draw2dpdf.GraphicContext // graphic context
@@ -43,4 +45,5 @@ type options struct {
 	PDFDir           string                    // directory to save PDF files
 }
 
+// Opt is the global options variable used throughout the application.
 var Opt options
